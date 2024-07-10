@@ -4,4 +4,6 @@ console.log("add by Ras");
 console.log("add by Hamdi");
 console.log("add by nizar");
 console.log("Counter Strike");
+console.log("Counter Strike");
+console.log("Counter canva");
 console.log("Hello World " + x);
