@@ -31,6 +31,7 @@
           Menu
         </q-item-label>
         <q-item active-class="text-bold" :to="{name: 'login'}">Login</q-item>
+        <q-item active-class="text-bold" :to="{name: 'accounts'}">Accounts</q-item>
       </q-list>
     </q-drawer>
     <q-page-container>

@@ -2,7 +2,7 @@
   <q-page>
     <q-card>
       <q-card-section class="text-h3">
-        Login Page
+        Login Page {{ username }}
       </q-card-section>
       <q-card-section>
         <q-input label="Username" v-model="username" />
