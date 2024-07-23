@@ -16,6 +16,9 @@ defineProps<{
 </template>
 
 <style scoped>
+.greetings {
+  border: 1px solid white;
+}
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
