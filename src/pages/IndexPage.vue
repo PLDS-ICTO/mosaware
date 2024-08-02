@@ -1,47 +1,82 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-  </q-page>
+  <div class="q-pa-md">
+    <q-parallax>
+      <template v-slot:media>
+        <img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+      </template>
+
+      <template v-slot:content="scope">
+        <div
+          class="absolute column items-center"
+          :style="{
+            opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
+            top: scope.percentScrolled * 60 + '%',
+            left: 0,
+            right: 0,
+          }"
+        >
+          <img
+            src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
+            style="width: 150px; height: 150px"
+          />
+          <div class="text-h3 text-white text-center">Quasar Framework</div>
+          <div class="text-h6 text-grey-3 text-center">v{{ $q.version }}</div>
+        </div>
+      </template>
+    </q-parallax>
+  </div>
+
+  <div class="q-pa-md">
+    <q-carousel
+      swipeable
+      animated
+      arrows
+      v-model="slide"
+      v-model:fullscreen="fullscreen"
+      infinite
+    >
+      <q-carousel-slide
+        :name="1"
+        img-src="https://cdn.quasar.dev/img/mountains.jpg"
+      />
+      <q-carousel-slide
+        :name="2"
+        img-src="https://cdn.quasar.dev/img/parallax1.jpg"
+      />
+      <q-carousel-slide
+        :name="3"
+        img-src="https://cdn.quasar.dev/img/parallax2.jpg"
+      />
+      <q-carousel-slide
+        :name="4"
+        img-src="https://cdn.quasar.dev/img/quasar.jpg"
+      />
+
+      <template v-slot:control>
+        <q-carousel-control position="bottom-right" :offset="[18, 18]">
+          <q-btn
+            push
+            round
+            dense
+            color="white"
+            text-color="primary"
+            :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
+            @click="fullscreen = !fullscreen"
+          />
+        </q-carousel-control>
+      </template>
+    </q-carousel>
+  </div>
 </template>
-
-<script setup lang="ts">
+<script>
 import { ref } from 'vue';
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
 
-defineOptions({
-  name: 'IndexPage'
-});
-
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1'
+export default {
+  setup() {
+    return {
+      slide: ref(1),
+      fullscreen: ref(false),
+    };
   },
-  {
-    id: 2,
-    content: 'ct2'
-  },
-  {
-    id: 3,
-    content: 'ct3'
-  },
-  {
-    id: 4,
-    content: 'ct4'
-  },
-  {
-    id: 5,
-    content: 'ct5'
-  }
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200
-});
+};
 </script>
